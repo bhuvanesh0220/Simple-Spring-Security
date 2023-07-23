@@ -1,5 +1,6 @@
 package com.security.Home.Controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,16 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/home")
 public class HomeController {
 	
+	@Value("${welcome.message.all}")
+	private String welcome;
+	
+	@Value("${welcome.message.authentication.user}")
+	private String authUser;
+	
 	@GetMapping("/welcome")
 	public String getWelcomeMessage() {
 		System.out.println("Enter into Welcome Message");
-		return "Welcome to Spring Security Project with Bhuvanesh";
+		return welcome;
 	}
 	
 	@GetMapping("/auth")
 	public String getAuthResult() {
 		System.out.println("Enter into Welcome Auth Message");
-		return "You are Correct the Password Authenticated SuccessFully.... Welcome !!!!";
+		return authUser;
 	}
 
 }
